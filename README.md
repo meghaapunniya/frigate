@@ -10,7 +10,7 @@
 
 \[English\] | [简体中文](https://github.com/blakeblackshear/frigate/blob/dev/README_CN.md)
 
-A complete and local NVR designed for [Home Assistant](https://www.home-assistant.io) with AI object detection. Uses OpenCV and Tensorflow to perform realtime object detection locally for IP cameras.
+A complete and local NVR designed for [Home Assistant](https://www.home-assistant.io) with AI-powered object detection. Uses OpenCV and Tensorflow to perform realtime object detection locally for IP cameras.
 
 Use of a GPU or AI accelerator such as a [Google Coral](https://coral.ai/products/) or [Hailo](https://hailo.ai/) is highly recommended. AI accelerators will outperform even the best CPUs with very little overhead.
 
