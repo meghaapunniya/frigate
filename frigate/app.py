@@ -246,9 +246,27 @@ class FrigateApp:
         logger.info(f"Review process started: {review_segment_process.pid}")
 
     def init_embeddings_manager(self) -> None:
-        # always start the embeddings process
-        embedding_process = EmbeddingProcess(
-            self.config, self.embeddings_metrics, self.stop_event
+      
+        genai_cameras = [
+            c for c in self.config.cameras.values() if c.enabled and c.genai.enabled
+        ]
+
+        if (
+            not self.config.semantic_search.enabled
+            and not genai_cameras
+            and not self.config.lpr.enabled
+            and not self.config.face_recognition.enabled
+            and not self.config.classification.bird.enabled
+        ):
+            return
+
+        embedding_process = util.Process(
+            target=manage_embeddings,
+            name="embeddings_manager",
+            args=(
+                self.config,
+                self.embeddings_metrics,
+            ),
         )
         self.embedding_process = embedding_process
         embedding_process.start()
